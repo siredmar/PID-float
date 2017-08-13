@@ -45,8 +45,8 @@ float Pid::Handler(float input)
     ErrorSum = std::max(ErrorSum, MinLimit);
 
     KpOutput = Kp * Error;
-    KiOutput = Ki * ErrorSum;// * SampleTimeMs;
-    KdOutput = Kd * (Error - ErrorOld);///SampleTimeMs;
+    KiOutput = Ki * ErrorSum * SampleTimeMs;
+    KdOutput = Kd * (Error - ErrorOld) / SampleTimeMs;
 
     KiOutput = std::min(KiOutput, MaxLimit);
     KiOutput = std::max(KiOutput, MinLimit);
